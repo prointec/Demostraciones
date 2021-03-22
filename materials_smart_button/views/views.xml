@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="sale_view_order_form_inherit" model="ir.ui.view">
+            <field name="name">	sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='preview_sale_order']" position="before">
+                    <button name="create_materials_list" attrs="{'invisible': [('state', 'not in', ('sale'))]}" type="object" class="oe_stat_button" icon="fa-building">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Materials</span>
+                            <span class="o_stat_text">List</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="materials_list_wizard_form" model="ir.ui.view">
+        <field name="name">materials.list.wizard.form</field>
+        <field name="model">materials.list.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <h3>Materials List</h3>
+                <br/>
+                <h4>State: <field name="state"/></h4>
+
+                <notebook>
+                    <page string="Components" name="components">
+                        <field name="materials_list_id" widget="section_and_note_one2many" mode="tree" attrs="{'readonly': [('state', '=', 'confirm')]}">
+                            <tree string="Materials List" editable="bottom">
+                                <control>
+                                    <create name="add_line_control" string="Add Materials List"/>
+                                </control>
+                                <field name="product_id"/>
+                                <field name="order_id"/>
+                                <field name="to_consume"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Miscellaneous" name="miscellaneous">
+                        <group>
+                            <group>
+                                <field name="location_id" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+
+                <footer>
+                    <button string="Confirm" class="btn-primary" type="object" name="save_material_list" attrs="{'invisible': [('state', '=', 'confirm')]}"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="materials_list_wizard_action" model="ir.actions.act_window">
+        <field name="name">Materials List Wizard</field>
+        <field name="res_model">materials.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
