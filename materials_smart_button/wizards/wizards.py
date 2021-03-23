@@ -17,6 +17,7 @@ class MaterialsListWizard(models.TransientModel):
     _name = 'materials.list.wizard'
     _description = 'Add Materials List'
 
+    @api.depends('materials_list_id')
     def _compute_pick_state(self):
         for rec in self:
             order = self.env['sale.order'].search([('id', '=', self.env.context.get('active_id'))])
